@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres:13-alpine
+    ports:
+      - "5438:5432"
+    environment:
+      - POSTGRES_DB=software_db
+      - POSTGRES_USER=software_user
+      - POSTGRES_PASSWORD=111222333
+    volumes:
+      - pgdata_volume:/var/lib/postgresql/data/
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+volumes:
+  pgdata_volume:
